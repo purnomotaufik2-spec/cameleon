@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMELIA Slideshow</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fff;
+}
+
+/* ===== HEADER ===== */
+header {
+  position: relative;
+  background: url('https://lh3.googleusercontent.com/d/1h3FkJcn2O9yD3VDdBudRkFqxV5X1_URy=w1000') center/cover no-repeat;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+}
+header h1 {
+  z-index: 2;
+  font-size: 90px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  background: linear-gradient(90deg, #ffffff, #a8e063, #56ab2f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(255,255,255,0.25);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+header p {
+  z-index: 2;
+  font-size: 22px;
+  color: #e0f2d3;
+  letter-spacing: 1px;
+  animation: glowPulseText 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 10px rgba(255,255,255,0.2); opacity: 0.9; }
+  50% { text-shadow: 0 0 35px rgba(255,255,255,0.8); opacity: 1; }
+  100% { text-shadow: 0 0 10px rgba(255,255,255,0.2); opacity: 0.9; }
+}
+@keyframes glowPulseText {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; text-shadow: 0 0 10px rgba(168,224,99,0.7); }
+  100% { opacity: 0.8; }
+}
+
+/* ===== WHITE SEPARATOR ===== */
+.separator {
+  height: 10px;
+  background: white;
+}
+
+/* ===== SLIDESHOW (3 PANELS) ===== */
+.slideshow {
+  position: relative;
+  display: flex;
+  height: 420px;
+  overflow: hidden;
+}
+.slideshow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1;
+}
+.slideshow-panel {
+  flex: 1;
+  background-size: cover;
+  background-position: center 60%;
+  filter: brightness(0.85);
+  transition: background-image 1s ease-in-out;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  position: relative;
+  background: url('https://lh3.googleusercontent.com/d/1RKe20TDK68dnH-A55qMiozBspv_UxTO7=w1000') center/cover no-repeat;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 1;
+}
+.camelia-slogan {
+  z-index: 2;
+  font-size: 24px;
+  font-weight: 500;
+  color: #e1f7e9;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0,0,0,0.25);
+  animation: pulse 2s ease-in-out infinite;
+  transition: opacity 0.4s ease;
+}
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; text-shadow: 0 0 20px rgba(255,255,255,0.35); }
+  100% { opacity: 0.6; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CAMELIA</h1>
+  <p>Centralized Agribusiness Management for Enterprise Lifecycle and Integrated Activity of Tea Commodity 🌿</p>
+</header>
+
+<div class="separator"></div>
+
+<section class="slideshow">
+  <div class="slideshow-panel"></div>
+  <div class="slideshow-panel"></div>
+  <div class="slideshow-panel"></div>
+</section>
+
+<div class="separator"></div>
+
+<footer>
+  <div class="camelia-slogan" id="slogan"></div>
+</footer>
+
+<script>
+// === Slideshow ===
+const slides = [
+  "https://docs.google.com/uc?export=view&id=1XVBzYuB3stgBcSvGjJpa75SQLqK2HGhM",
+  "https://docs.google.com/uc?export=view&id=16r59Y-M9ok1mVKn30MpdHrSsDsPGWZR6",
+  "https://docs.google.com/uc?export=view&id=1bX10GPByuUOqAupBP5dWOQmNC4MmtuW4",
+  "https://docs.google.com/uc?export=view&id=1Bh7i3iyVMbDxWH4ZMixZXHmpxQ-hEfjK",
+  "https://docs.google.com/uc?export=view&id=10KRNpGSFKB-zzILqkdZHo3pAMx4MtB_g",
+  "https://docs.google.com/uc?export=view&id=1nqW0chTK94_rC8hX4ZxoDu-zXXvCYN8Y",
+  "https://docs.google.com/uc?export=view&id=1YlPDznjFmOvkg6hwVM2attOCWfq7aMCw",
+  "https://docs.google.com/uc?export=view&id=1zyk1ioQywAA0kGWYQQQWEENWu38pIdAj",
+  "https://docs.google.com/uc?export=view&id=1L8koVGd0qmxID5Yukwon2WFlIawkEFQf",
+  "https://docs.google.com/uc?export=view&id=1PmPBoyypsMhJyeH4tru7z790Vw86F-G1",
+  "https://docs.google.com/uc?export=view&id=1jLuGuASldqqKzq9fRmH-Q154wQ7Xkank",
+  "https://docs.google.com/uc?export=view&id=1gDDobFObV8ei_hXntZjMhSN-D_nA-7XM",
+  "https://docs.google.com/uc?export=view&id=1jayhDNoCOURFJZWqL5cCVBRB9fOHuvnc",
+  "https://docs.google.com/uc?export=view&id=15KIKbglGEGkTCsCkxljAC4vlhqsjhEEe",
+  "https://docs.google.com/uc?export=view&id=1YltNJly6ZWs9kCzBxXyu6F19G4jz_wlg",
+  "https://docs.google.com/uc?export=view&id=1VvnA4vTzylEuW4LYAskPNT7byA8TOaPd",
+  "https://docs.google.com/uc?export=view&id=1HZuEFBGSwdkj8xi0tgWhyyx64E-e6Zva",
+  "https://docs.google.com/uc?export=view&id=1blnmHUBmk2742gOaWVA6yeXwK2sTCoh0",
+  "https://docs.google.com/uc?export=view&id=1crJjRIcTmbXhK6oK1zGrWcGg4L8dlsr6",
+  "https://docs.google.com/uc?export=view&id=1QMEwX9dvPldInD0p7kRP-z4wHyFEVCd2"
+];
+let i = 0;
+const panels = document.querySelectorAll('.slideshow-panel');
+function updateSlides() {
+  panels.forEach((panel, idx) => {
+    const imgIndex = (i + idx) % slides.length;
+    panel.style.backgroundImage = `url(${slides[imgIndex]})`;
+  });
+  i = (i + 3) % slides.length;
+}
+updateSlides();
+setInterval(updateSlides, 4000);
+
+// === Slogan ===
+const slogans = [
+  "Data-Driven Decisions for Tea Management",
+  "Cultivating Insight, Growing Excellence",
+  "Empowering Tea Management with Data",
+  "Turning Growth into Knowledge",
+  "Precision Meets Plantation",
+  "From Leaf to Logic",
+  "Smart Agriculture, Beautifully Brewed",
+  "Harmony Between Nature and Numbers",
+  "Data that Nurtures Growth",
+  "Insight that Grows with You",
+  "Empowering Sustainability Through Analytics",
+  "Where Every Leaf Tells a Story",
+  "From Tea Fields to Data Fields",
+  "Innovation Rooted in Nature"
+];
+let s = 0;
+const sEl = document.getElementById('slogan');
+function changeSlogan() {
+  sEl.style.opacity = 0;
+  setTimeout(() => {
+    sEl.textContent = slogans[s];
+    sEl.style.opacity = 1;
+    s = (s + 1) % slogans.length;
+  }, 400);
+}
+changeSlogan();
+setInterval(changeSlogan, 3500);
+</script>
+
+</body>
+</html>
